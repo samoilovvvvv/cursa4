@@ -20,11 +20,15 @@ const MainPage = () => {
   const [viewStartButton, setViewStartButton] = useState(true)
   const [fileName, setFileName] = useState('')
   const [selectedFile, setSelectedFile] = useState('')
+  const [data, setData] = useState({})
   
   useEffect(() => {
     const data = ARCHIVED_IMAGE.find(item => item.id === selectedFile)
     
-    if (data) setFileName(data.name)
+    if (data) {
+      setData(data)
+      setFileName(data.name)
+    }
   }, [selectedFile])
   
   const uploadClickHandler = event => {
@@ -67,6 +71,7 @@ const MainPage = () => {
               fileName={fileName}
               uploadClickHandler={uploadClickHandler}
               selectedFile={selectedFile}
+              data={data}
             />
           </Grid>
         )
